@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>ScrollTop</title>
+	<style type="text/css">
+		#divu{
+			max-height: 100px;
+			width: 400px;
+			background-color: antiquewhite;            
+			margin: 10px;
+			overflow-y: scroll;
+		}
+		.chatMessage{
+			height: 20px;
+			margin: 5px;
+			background-color: yellowgreen;
+		}
+	</style>
+</head>
+<body>
+	<div id="divu">
+		<div class="chatMessage"></div>
+		<div class="chatMessage"></div>
+		<div class="chatMessage"></div>
+		<div class="chatMessage"></div>
+		<div class="chatMessage"></div>
+	</div>
+
+	<button type="button" id="conjQuery">Con jQuery</button>
+	<button type="button" id="animado">Con jQuery Animado</button>
+	<button type="button" onclick="sinjQuery()" id="sinjQuery">Sin jQuery</button>
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$('#conjQuery').on('click',function(){
+			//Le agrego otro ''Mensaje''
+			$('#divu').append('<div class="chatMessage"></div>');
+			//Fijo el scroll al fondo
+			$('#divu').scrollTop( $('#divu').prop('scrollHeight') );
+		});
+
+		$('#animado').on('click',function(){
+			//Le agrego otro ''Mensaje''
+			$('#divu').append('<div class="chatMessage"></div>');
+			//Fijo el scroll al fondo usando añadiendo una animación (animate)
+			$("#divu").animate({ scrollTop: $('#divu').prop("scrollHeight")}, 1000);
+		});
+
+		function sinjQuery(){
+			//Obtengo el div
+			var e = document.getElementById('divu');
+			//Le añado otro mensaje
+			e.innerHTML += '<div class="chatMessage"></div>';
+			//Llevo el scroll al fondo
+			var objDiv = document.getElementById("divu");
+			objDiv.scrollTop = objDiv.scrollHeight;
+		}
+	</script>
+</body>
+</html>
